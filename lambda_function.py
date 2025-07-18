@@ -1,7 +1,11 @@
-import uuid
+
 import random
 import datetime
 import json
+import boto3
+
+sqs_client = boto3.client('sqs')
+sqs_queue_url = 'arn:aws:sqs:eu-north-1:178070228754:airbnb-booking-queue'
 
 # Sample data for random choices
 cities = ["New York, USA", "Paris, France", "Tokyo, Japan", "Sydney, Australia", "Berlin, Germany"]
@@ -15,7 +19,7 @@ def generate_random_booking():
     price = random.randint(50, 500) * duration
 
     booking = {
-        "bookingId": str(uuid.uuid4()),
+        "bookingId": random.randint(1000, 9999),
         "userId": random.choice(user_ids),
         "propertyId": random.choice(property_ids),
         "location": random.choice(cities),
@@ -27,7 +31,13 @@ def generate_random_booking():
 
 # AWS Lambda handler
 def lambda_handler(event, context):
-    booking = generate_random_booking()
+    for i in range(101):
+        booking = generate_random_booking()
+        sqs_client.send_message(
+           QueueUrl=sqs_queue_url,
+          MessageBody=json.dumps(booking)
+        )
+
     
     return {
         "statusCode": 200,
