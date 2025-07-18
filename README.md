@@ -30,4 +30,6 @@ This project demonstrates an end-to-end data pipeline using AWS services to simu
 - Buildspec file (`buildspec.yml`) contains Lambda and S3 configuration.
 - Git workflow uses feature branches (`lambda-test`) and merge commits to trigger build and deployment.
 
+<img width="1222" height="562" alt="image" src="https://github.com/user-attachments/assets/3ba90d7c-362e-4f81-9e7a-ec53c2898a8d" />
+
 
