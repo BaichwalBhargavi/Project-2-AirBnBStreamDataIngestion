@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from itertools import count
+
 def lambda_handler(event, context):
     print("Event", event)
     message = json.loads(event[0]['body'])
@@ -10,9 +10,7 @@ def lambda_handler(event, context):
     print("Start", start)
     print("End", end)
     print("Days", (end - start).days)
-    count = 0
     if (end - start).days >=2:
-        count +=1
         return message 
     # TODO implement
     print("Count", count)
