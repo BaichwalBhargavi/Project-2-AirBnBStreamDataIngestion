@@ -14,13 +14,13 @@ This project demonstrates an end-to-end data pipeline using AWS services to simu
    Failed messages (after 3 attempts) from the SQS are moved to `airbnb-booking-dlq`.
 
 3. **EventBridge Integration**  
-   An EventBridge rule listens to messages from the SQS and triggers an enrichment Lambda function.
+   An EventBridge rule listens to messages from the SQS and triggers an enrichment Lambda function (`Airbnbbooking`). 
 
 4. **Enrichment Lambda**  
-   Filters bookings that are **greater than 2 days** and passes them to the next processing stage.
+   Filters bookings that are **greater than 2 days** and passes them to the next processing stage (`ProcessFilteredBookings`).
 
 5. **Data Storage Lambda**  
-   Converts enriched booking data to CSV using **Pandas** and stores the file in an **S3 bucket**.
+   Converts enriched booking data to CSV using **Pandas** and stores the file in an **S3 bucket** (`Airbnbprocessedbookings`).
 
 
 ## 🧪 Testing & Deployment
